@@ -18,7 +18,10 @@ export class EmployeeListComponent implements OnInit {
     private datashareService: DatashareService) { }
 
   ngOnInit(): void {
-    this.retrieveEmployees();
+    if (this.datashareService.getCompanyId()) {
+      this.retrieveEmployees();
+    }
+    
     this.datashareService.companyIdUpdated.subscribe(
       () => {
         this.retrieveEmployees();

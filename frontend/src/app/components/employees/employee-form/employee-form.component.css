@@ -1,0 +1,32 @@
+.example-container{
+    text-align: center;
+}
+/* .form-container {
+    position: absolute;
+    width: 30%;
+    padding: 20px;
+    border: lightgrey solid 0.2px;
+    border-radius: 5px;
+    left: 50%;
+    -moz-transform: translateX(-60%) translateY(-60%);
+    -webkit-transform: translateX(-60%) translateY(-60%);
+    transform: translateX(-60%) translateY(-60%); 
+} */
+  
+.form-container{
+    width: 30%;
+    padding: 15px;
+    margin: 10px;
+    border: lightgrey solid 0.2px;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-field{
+    display: block
+}
+
+button {
+    margin: 5px;
+}
