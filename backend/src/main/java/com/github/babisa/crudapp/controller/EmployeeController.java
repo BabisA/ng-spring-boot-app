@@ -21,13 +21,14 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees")
-    public ResponseEntity<List<EmployeeDto>> getEmployees() {
-        return ResponseEntity.ok(employeeService.getEmployees());
+    public ResponseEntity<List<EmployeeDto>> getEmployees(@RequestParam Integer companyId) {
+        return ResponseEntity.ok(employeeService.getEmployees(companyId));
     }
 
     @GetMapping("/employee/{id}")
-    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable(required = true) Integer id) {
-        return ResponseEntity.ok(employeeService.getEmployById(id));
+    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable(required = true) Integer id,
+                                                       @RequestParam Integer companyId) {
+        return ResponseEntity.ok(employeeService.getEmployById(id, companyId));
     }
 
     @PostMapping("/employee")

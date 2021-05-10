@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Employee } from 'src/app/model/employee.model';
 import { EmployeeService } from 'src/app/service/employee.service';
 import { ValidatorHelper } from 'src/app/helpers/validatorHelper';
+import { DatashareService } from 'src/app/service/datashare.service';
 
 @Component({
   selector: 'app-employee-create',
@@ -30,12 +31,22 @@ export class EmployeeFormComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
-    private snackbar: MatSnackBar) { }
+    private snackbar: MatSnackBar,
+    private datashareService: DatashareService) { }
 
   ngOnInit(): void {
+    if (!this.datashareService.getCompanyId()) {
+      this.router.navigate(['/list']);
+    }
     if (!this.isUserCreate) {
       this.retrieveEmployee(this.route.snapshot.params.id);
     }
+
+    this.datashareService.companyIdUpdated.subscribe(
+      () => {
+        this.router.navigate(['/list']);
+      }
+    )
   }
 
   retrieveEmployee(id: number): void {
@@ -57,7 +68,7 @@ export class EmployeeFormComponent implements OnInit {
 
     // this.employee = this.createForm.value;
     // this.employee.id = this.route.snapshot.params.id || '';
-
+    this.employee.companyId = String(this.datashareService.getCompanyId());
     this.employee.id = this.route.snapshot.params.id;
     this.employee.name = this.createForm.get('name')?.value.trim();
     this.employee.surname = this.createForm.get('surname')?.value.trim();
@@ -85,7 +96,6 @@ export class EmployeeFormComponent implements OnInit {
   updateEmployee(): void {
     this.employeeService.updateEmployee(this.employee).subscribe(
       (data: any) => {
-        console.log(data);
         this.router.navigate(['/list']);
       },
       (error: any) => {

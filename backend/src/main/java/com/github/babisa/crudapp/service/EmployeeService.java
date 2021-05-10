@@ -31,16 +31,16 @@ public class EmployeeService {
         repository.deleteById(id);
     }
 
-    public List<EmployeeDto> getEmployees() {
-        return ((List<Employee>) repository
-                .findAll())
+    public List<EmployeeDto> getEmployees(Integer companyId) {
+        return repository
+                .findAllByCompanyId(companyId)
                 .stream()
                 .map(this::convertToEmployeeDto)
                 .collect(Collectors.toList());
     }
 
-    public EmployeeDto getEmployById(Integer id) {
-        Optional<Employee> employee = repository.findById(id);
+    public EmployeeDto getEmployById(Integer id, Integer companyId) {
+        Optional<Employee> employee = repository.findByIdAndCompanyId(id, companyId);
         return employee.map(value -> modelMapper.map(value, EmployeeDto.class)).orElse(null);
     }
 

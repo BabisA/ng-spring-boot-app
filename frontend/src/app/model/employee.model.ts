@@ -5,4 +5,5 @@ export class Employee {
     address?: string;
     email?: string;
     salary?: string;
+    companyId?: string;
   }
