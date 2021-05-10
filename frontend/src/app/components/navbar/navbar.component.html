@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+    <button mat-button [matMenuTriggerFor]="menu">{{companyName}}</button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item *ngFor="let company of companies"
+            [attr.data-id]="company.id"
+            [attr.data-name]="company.name"
+            (click)="onCompanySelect($event)">{{company.name}}
+        </button>
+    </mat-menu>
+</mat-toolbar>

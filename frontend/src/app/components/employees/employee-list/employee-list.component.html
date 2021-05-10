@@ -1,0 +1,62 @@
+<div class="container mat-elevation-z8">
+
+    <mat-table #table *ngIf="employees !== undefined" [dataSource]="employees" matSort class="mat-cell">
+  
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+        <mat-cell *matCellDef="let row" >{{row.id}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="surname">
+        <mat-header-cell *matHeaderCellDef>Surname</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.surname}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.email}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="address">
+        <mat-header-cell *matHeaderCellDef>Address</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.address}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="salary">
+        <mat-header-cell *matHeaderCellDef>Salary</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.salary}}</mat-cell>
+      </ng-container>
+  
+      <!-- actions -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <a mat-icon-button color="primary" [routerLink]="['/create']" >
+            <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+          </a>
+        </mat-header-cell>
+  
+        <mat-cell *matCellDef="let row; let i=index;">
+          <button mat-icon-button color="primary" [routerLink]="['/edit', row.id]">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+  
+          <button mat-icon-button color="warn">
+            <mat-icon aria-label="Delete" (click)="deleteEmployee(row.id)">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+  
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+    <div class="no-results" *ngIf="employees === undefined">
+      <h2>No results</h2>
+    </div>
+  </div>
