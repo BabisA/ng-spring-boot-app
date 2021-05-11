@@ -19,10 +19,10 @@ export class NavbarComponent implements OnInit {
     public datashareService: DatashareService) { }
 
   ngOnInit(): void {
-    this.retrieveCompanies();
+    this.getCompanies();
   }
 
-  retrieveCompanies(): void {
+  getCompanies(): void {
     this.companyService.getAll()
       .subscribe(
         (data: Company[]) => {
