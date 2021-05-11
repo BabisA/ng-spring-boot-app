@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -41,10 +42,12 @@ public class CompanyService {
         return company.map(value -> modelMapper.map(value, CompanyDto.class)).orElse(null);
     }
 
+    public BigDecimal getCompanyAverageSalary(Integer companyId) {
+        return repository.findCompanyAverageSalary(companyId);
+    }
+
     private CompanyDto convertToCompanyDto(Company company) {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
         return modelMapper.map(company, CompanyDto.class);
     }
-
-
 }

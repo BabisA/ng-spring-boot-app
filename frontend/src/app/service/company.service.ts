@@ -15,4 +15,8 @@ export class CompanyService {
   getAll(): Observable<any> {
     return this.http.get(`${this.API_URL}/companies`);
   }
+
+  getCompanyAverageSalary(id: String): Observable<any> {
+    return this.http.get(`${this.API_URL}/company/avg/${id}`);
+  }
 }
