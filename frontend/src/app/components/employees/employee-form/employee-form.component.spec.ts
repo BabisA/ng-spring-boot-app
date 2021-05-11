@@ -12,6 +12,7 @@ import { DatashareService } from 'src/app/service/datashare.service';
 import { of } from 'rxjs';
 import { Employee } from 'src/app/model/employee.model';
 import { Router } from '@angular/router';
+import { EmployeeListComponent } from '../employee-list/employee-list.component';
 
 describe('EmployeeFormComponent', () => {
   let component: EmployeeFormComponent;
@@ -37,7 +38,9 @@ describe('EmployeeFormComponent', () => {
       imports: [
         RouterTestingModule.withRoutes([
           { path: 'create/', component: EmployeeFormComponent },
-          { path: 'edit/', component: EmployeeFormComponent }
+          { path: 'edit/', component: EmployeeFormComponent },
+          { path: '', component: EmployeeListComponent},
+          { path: 'list', component: EmployeeListComponent}
         ]),
         FormsModule,
         ReactiveFormsModule,
