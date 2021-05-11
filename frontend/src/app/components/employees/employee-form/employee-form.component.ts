@@ -39,7 +39,7 @@ export class EmployeeFormComponent implements OnInit {
       this.router.navigate(['/list']);
     }
     if (!this.isUserCreate) {
-      this.retrieveEmployee(this.route.snapshot.params.id);
+      this.getEmployee(this.route.snapshot.params.id);
     }
 
     this.datashareService.companyIdUpdated.subscribe(
@@ -49,7 +49,7 @@ export class EmployeeFormComponent implements OnInit {
     )
   }
 
-  retrieveEmployee(id: number): void {
+  getEmployee(id: number): void {
     this.employeeService.getEmployeeById(id).subscribe(
       (data: Employee) => {
         this.employee = data;
