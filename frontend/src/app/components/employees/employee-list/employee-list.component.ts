@@ -26,7 +26,6 @@ export class EmployeeListComponent implements OnInit {
     this.datashareService.companyIdUpdated.subscribe(
       () => {
         this.getEmployees();
-        console.log(this.datashareService.getCompanyId())
       }
     )
   }
