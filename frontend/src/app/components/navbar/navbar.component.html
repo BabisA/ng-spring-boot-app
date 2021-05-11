@@ -1,15 +1,13 @@
 <mat-toolbar color="primary">
-    <button mat-button [matMenuTriggerFor]="menu">{{companyName}}</button>
+    <button mat-button [matMenuTriggerFor]="menu" id="btnMenu">{{companyName}}</button>
     <mat-menu #menu="matMenu">
         <button mat-menu-item *ngFor="let company of companies"
-            [attr.data-id]="company.id"
-            [attr.data-name]="company.name"
-            (click)="onCompanySelect($event)">{{company.name}}
+            (click)="onCompanySelect(company)">{{company.name}}
         </button>
     </mat-menu>
     <span class="spacer"></span>
 	<span flex></span>
-	<div style="font-size: 15px">
+	<div id='salary' style="font-size: 15px">
         Average Salary: $ {{companyAvgSalary}}
 	</div>
 </mat-toolbar>

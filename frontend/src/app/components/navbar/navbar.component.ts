@@ -45,12 +45,12 @@ export class NavbarComponent implements OnInit {
         });
   }
 
-  onCompanySelect(event: any): void {
-    if (this.datashareService.getCompanyId() === Number(event.target.dataset.id)) {
+  onCompanySelect(company: Company): void {
+    if (this.datashareService.getCompanyId() === Number(company.id)) {
       return
     }
-    this.companyName = event.target.dataset.name;
-    this.datashareService.setCompanyId(Number(event.target.dataset.id));
+    this.companyName = String(company.name);
+    this.datashareService.setCompanyId(Number(company.id));
     this.getCompanyAvgSalary();
   }
 }
