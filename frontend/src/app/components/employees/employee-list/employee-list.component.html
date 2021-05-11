@@ -1,6 +1,6 @@
 <div class="container mat-elevation-z8">
 
-    <mat-table #table *ngIf="employees !== undefined" [dataSource]="employees" matSort class="mat-cell">
+    <mat-table #table *ngIf="employees.length > 0" [dataSource]="employees" matSort class="mat-cell">
   
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
@@ -56,7 +56,7 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
   
-    <div class="no-results" *ngIf="employees === undefined">
+    <div class="no-results" *ngIf="employees.length === 0">
       <h2>No results</h2>
     </div>
   </div>

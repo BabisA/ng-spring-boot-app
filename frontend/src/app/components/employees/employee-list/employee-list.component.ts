@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Employee } from 'src/app/model/employee.model';
 import { DatashareService } from 'src/app/service/datashare.service';
 import { EmployeeService } from 'src/app/service/employee.service';
 
@@ -9,7 +10,7 @@ import { EmployeeService } from 'src/app/service/employee.service';
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
-  employees: any;
+  employees: Employee[] = [];
   displayedColumns = ['name', 'surname', 'email', 'address', 'salary', 'actions'];
 
   constructor(
