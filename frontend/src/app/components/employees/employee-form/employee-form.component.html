@@ -45,10 +45,9 @@
             <input matInput formControlName="salary" required>
             <mat-error *ngIf="createForm.controls.salary.touched && createForm.controls.salary.invalid">
               <span *ngIf="createForm.controls.salary.errors?.required">This field is mandatory.</span>
-              <span *ngIf="createForm.controls.salary.errors?.pattern">This field is invalid.</span>
               <span *ngIf="createForm.controls.salary.errors?.trimError">This field is invalid.</span>
             </mat-error>
-          </mat-form-field>
+        </mat-form-field>
         <button mat-raised-button color="primary" [routerLink]="['/list']">Cancel</button>
         <button mat-raised-button color="primary" type="submit">Save</button>
       </form>
