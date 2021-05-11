@@ -19,18 +19,18 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.datashareService.getCompanyId()) {
-      this.retrieveEmployees();
+      this.getEmployees();
     }
     
     this.datashareService.companyIdUpdated.subscribe(
       () => {
-        this.retrieveEmployees();
+        this.getEmployees();
         console.log(this.datashareService.getCompanyId())
       }
     )
   }
 
-  retrieveEmployees(): void {
+  getEmployees(): void {
     this.employeeService.getAll()
       .subscribe(
         data => {
@@ -44,7 +44,7 @@ export class EmployeeListComponent implements OnInit {
   deleteEmployee(id: number): void {
     this.employeeService.deleteEmployeeById(id).subscribe(
       () => {
-        this.retrieveEmployees();
+        this.getEmployees();
       },
       error => {
         console.log(error);
