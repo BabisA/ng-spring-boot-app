@@ -20,6 +20,12 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCompanies();
+
+    this.datashareService.employeesUpdated.subscribe(
+      () => {
+        this.getCompanyAvgSalary();
+      }
+    )
   }
 
   getCompanies(): void {

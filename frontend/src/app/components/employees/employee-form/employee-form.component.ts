@@ -66,8 +66,6 @@ export class EmployeeFormComponent implements OnInit {
       return;
     }
 
-    // this.employee = this.createForm.value;
-    // this.employee.id = this.route.snapshot.params.id || '';
     this.employee.companyId = String(this.datashareService.getCompanyId());
     this.employee.id = this.route.snapshot.params.id;
     this.employee.name = this.createForm.get('name')?.value.trim();
@@ -96,7 +94,9 @@ export class EmployeeFormComponent implements OnInit {
   updateEmployee(): void {
     this.employeeService.updateEmployee(this.employee).subscribe(
       (data: any) => {
+        this.datashareService.employeeUpdated();
         this.router.navigate(['/list']);
+        
       },
       (error: any) => {
         console.log(error);
@@ -107,7 +107,7 @@ export class EmployeeFormComponent implements OnInit {
   saveEmployee(): void {
     this.employeeService.saveEmployee(this.employee).subscribe(
       (data: any) => {
-        console.log(data);
+        this.datashareService.employeeUpdated();
         this.router.navigate(['/list']);
       },
       (error: any) => {

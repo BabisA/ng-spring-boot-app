@@ -5,6 +5,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 })
 export class DatashareService {
   companyIdUpdated: EventEmitter<Number> = new EventEmitter();
+  employeesUpdated: EventEmitter<String> = new EventEmitter();
   
   private companyId: Number = 0;
 
@@ -17,5 +18,9 @@ export class DatashareService {
 
   getCompanyId(): Number {
     return this.companyId;
+  }
+
+  employeeUpdated(): void {
+    this.employeesUpdated.emit('update');
   }
 }

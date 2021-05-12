@@ -45,6 +45,7 @@ export class EmployeeListComponent implements OnInit {
     this.employeeService.deleteEmployeeById(id).subscribe(
       () => {
         this.getEmployees();
+        this.datashareService.employeeUpdated();
       },
       error => {
         console.log(error);
