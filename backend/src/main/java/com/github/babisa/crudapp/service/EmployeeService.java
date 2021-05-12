@@ -5,11 +5,8 @@ import com.github.babisa.crudapp.model.Employee;
 import com.github.babisa.crudapp.repository.EmployeesRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,8 +20,8 @@ public class EmployeeService {
         this.repository = repository;
     }
 
-    public void add(EmployeeDto dto) {
-        repository.save(modelMapper.map(dto, Employee.class));
+    public EmployeeDto add(EmployeeDto dto) {
+        return modelMapper.map(repository.save(modelMapper.map(dto, Employee.class)), EmployeeDto.class);
     }
 
     public void delete(Integer id) {

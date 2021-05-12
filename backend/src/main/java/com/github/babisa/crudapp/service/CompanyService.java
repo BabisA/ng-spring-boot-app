@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,25 +20,12 @@ public class CompanyService {
         this.repository = repository;
     }
 
-    public void add(CompanyDto dto) {
-        repository.save(modelMapper.map(dto, Company.class));
-    }
-
-    public void delete(Integer id) {
-        repository.deleteById(id);
-    }
-
     public List<CompanyDto> getCompanies() {
         return ((List<Company>) repository
                 .findAll())
                 .stream()
                 .map(this::convertToCompanyDto)
                 .collect(Collectors.toList());
-    }
-
-    public CompanyDto getCompanyById(Integer id) {
-        Optional<Company> company = repository.findById(id);
-        return company.map(value -> modelMapper.map(value, CompanyDto.class)).orElse(null);
     }
 
     public BigDecimal getCompanyAverageSalary(Integer companyId) {

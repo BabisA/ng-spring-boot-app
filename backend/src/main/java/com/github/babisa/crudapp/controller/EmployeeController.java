@@ -1,9 +1,7 @@
 package com.github.babisa.crudapp.controller;
 
 import com.github.babisa.crudapp.dto.EmployeeDto;
-import com.github.babisa.crudapp.model.Employee;
 import com.github.babisa.crudapp.service.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
@@ -33,8 +31,8 @@ public class EmployeeController {
 
     @PostMapping("/employee")
     public ResponseEntity<EmployeeDto> postEmployees(@RequestBody EmployeeDto employeeDTO) {
-        employeeService.add(employeeDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(employeeDTO);
+        EmployeeDto empDto = employeeService.add(employeeDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(empDto);
     }
 
     @PutMapping("/employee/{id}")
